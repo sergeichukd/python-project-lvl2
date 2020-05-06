@@ -1,0 +1,8 @@
+# poetry
+
+*.egg-info
+__pycache__
+dist/
+*.pyc
+.venv/
+.idea/
