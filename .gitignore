@@ -6,3 +6,5 @@ dist/
 *.pyc
 .venv/
 .idea/
+gendiff/scripts/after.json
+gendiff/scripts/before.json

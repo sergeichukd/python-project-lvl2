@@ -36,7 +36,6 @@ def make_added_key_diffs(file_data, *, added_keys):
 
 def generate_diff(file1, file2):
     diff_lines = []
-
     file1_data = json.load(open(file1))
     file2_data = json.load(open(file2))
 
@@ -47,22 +46,13 @@ def generate_diff(file1, file2):
     removed_keys = file1_keys - file2_keys
     added_keys = file2_keys - file1_keys
 
-    for key in common_keys:
-        if file1_data[key] == file2_data[key]:
-            file_line = f"  {key}: {file2_data[key]}"
-            diff_lines.append(file_line)
-        else:
-            file1_line = f"- {key}: {file1_data[key]}"
-            file2_line = f"+ {key}: {file2_data[key]}"
-            diff_lines.extend([file1_line, file2_line])
+    common_key_diffs = make_common_key_diffs(file1_data, file2_data, common_keys=common_keys)
+    removed_key_diffs = make_removed_key_diffs(file1_data, removed_keys=removed_keys)
+    added_key_diffs = make_added_key_diffs(file2_data, added_keys=added_keys)
 
-    for key in removed_keys:
-        file1_line = f"- {key}: {file1_data[key]}"
-        diff_lines.append(file1_line)
-
-    for key in added_keys:
-        file2_line = f"+ {key}: {file2_data[key]}"
-        diff_lines.append(file2_line)
+    diff_lines.extend(common_key_diffs)
+    diff_lines.extend(removed_key_diffs)
+    diff_lines.extend(added_key_diffs)
 
     return "{\n" + "\n".join(diff_lines) + "\n}"
 
