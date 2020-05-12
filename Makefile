@@ -1,7 +1,12 @@
 install:
 	poetry install
 
+test:
+	poetry run pytest gendiff tests
+
 lint:
 	poetry run flake8 gendiff
 
-.PHONY: install lint
+check: test lint
+
+.PHONY: install test lint
