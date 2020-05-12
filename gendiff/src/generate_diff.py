@@ -12,12 +12,16 @@ def generate_diff(file1, file2):
     file1_keys = set(file1_data.keys())
     file2_keys = set(file2_data.keys())
 
-    common_keys = file1_keys & file2_keys
-    removed_keys = file1_keys - file2_keys
-    added_keys = file2_keys - file1_keys
+    common_keys = list(file1_keys & file2_keys)
+    removed_keys = list(file1_keys - file2_keys)
+    added_keys = list(file2_keys - file1_keys)
 
-    common_key_diffs = make_common_key_diffs(file1_data, file2_data, common_keys=common_keys)
-    removed_key_diffs = make_removed_key_diffs(file1_data, removed_keys=removed_keys)
+    common_keys.sort()
+    removed_keys.sort()
+    added_keys.sort()
+
+    common_key_diffs = make_common_key_diffs(file1_data, file2_data, common_keys=common_keys)  # noqa: E501
+    removed_key_diffs = make_removed_key_diffs(file1_data, removed_keys=removed_keys)  # noqa: E501
     added_key_diffs = make_added_key_diffs(file2_data, added_keys=added_keys)
 
     diff_lines.extend(common_key_diffs)
