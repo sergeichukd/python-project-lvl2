@@ -7,4 +7,4 @@ lint:
 check:
 	python3 -m pytest
 
-.PHONY: install lint test
+.PHONY: install lint check
