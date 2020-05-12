@@ -1,10 +1,12 @@
 install:
-	python3 -m poetry install
+	@poetry install
 
 lint:
-	python3 -m poetry run flake gendiff
+	poetry run flake8 gendiff
 
-check:
-	python3 -m pytest
+test:
+	poetry run pytest gendiff tests
 
-.PHONY: install lint check
+check: lint test
+
+.PHONY: install lint test check
