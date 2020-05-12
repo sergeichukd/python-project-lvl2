@@ -1,1 +1,1 @@
-from gendiff import cli, core, scripts, src
+from gendiff.src.generate_diff import generate_diff
