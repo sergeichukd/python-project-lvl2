@@ -1,11 +1,11 @@
 install:
-	poetry install
+	python -m poetry install
 
 test:
-	poetry run pytest gendiff
+	python -m poetry run pytest gendiff
 
 lint:
-	poetry run flake8 gendiff
+	python -m poetry run flake8 gendiff
 
 check: test lint
 
