@@ -6,3 +6,5 @@ dist/
 *.pyc
 .venv/
 .idea/
+.coverage
+coverage.xml
