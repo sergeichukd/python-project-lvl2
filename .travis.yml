@@ -1,18 +1,18 @@
 language: python
 python:
-  # we want to test our package on several versions of Python
-  - 3.6
-  - 3.7
-  - 3.8
+	# we want to test our package on several versions of Python
+	- 3.6
+	- 3.7
+	- 3.8
 
 before_install:
-  # make depends on poetry
-  - pip install poetry
-  - pip install pytest
+	# make depends on poetry
+	- pip install poetry
+	- pip install pytest
 
 install:
-  - make install
+	- make install
 
 script:
-  - make lint
-  - make check
+	- make lint
+	- make check
