@@ -1,13 +1,13 @@
-import json
 from .make_added_key_diffs import make_added_key_diffs
 from gendiff.src.make_removed_key_diffs import make_removed_key_diffs
 from gendiff.src.make_common_key_diffs import make_common_key_diffs
+from gendiff.src.parse_file import parse_file
 
 
-def generate_diff(file1, file2):
+def generate_diff(file1, file2, *, file_format):
     diff_lines = []
-    file1_data = json.load(open(file1))
-    file2_data = json.load(open(file2))
+    file1_data = parse_file(file1, file_format=file_format)
+    file2_data = parse_file(file2, file_format=file_format)
 
     file1_keys = set(file1_data.keys())
     file2_keys = set(file2_data.keys())
