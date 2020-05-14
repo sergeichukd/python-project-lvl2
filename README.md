@@ -9,5 +9,8 @@
 ### Functionality
 Now the program can handle flat .json files only. More functions in developing now
 
-#### Example of installation and running
+#### Example of installation and running [json]
 [![asciicast](https://asciinema.org/a/ehjtFMfZGhQxK7fPJtu0VwTPj.svg)](https://asciinema.org/a/ehjtFMfZGhQxK7fPJtu0VwTPj)
+
+#### Example of installation and running [yaml]
+[![asciicast](https://asciinema.org/a/e6Aq0jQxLsR3GMjpeILiui2JM.svg)](https://asciinema.org/a/e6Aq0jQxLsR3GMjpeILiui2JM)
