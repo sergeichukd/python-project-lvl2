@@ -1,0 +1,64 @@
+{
+    "removed_keys": {
+        "group2": {
+            "abc": "12345"
+        }
+    },
+    "added_keys": {
+        "group3": {
+            "fee": "100500"
+        }
+    },
+    "equal_keys": {
+        "equal_vals": {},
+        "diff_vals": {
+            "deleted_val": {},
+            "added_val": {}
+        },
+        "both_dict": {
+            "group1": {
+                "removed_keys": {},
+                "added_keys": {},
+                "equal_keys": {
+                    "both_dict": {},
+                    "equal_vals": {
+                        "foo": "bar"
+                    },
+                    "diff_vals": {
+                        "deleted_val": {
+                            "baz": "bas"
+                        },
+                        "added_val": {
+                            "baz": "bars"
+                        }
+                    }
+                }
+            },
+            "common": {
+                "removed_keys": {
+                    "setting2": "200",
+                    "setting6": {
+                        "key": "value"
+                    }
+                },
+                "added_keys": {
+                    "setting4": "blah blah",
+                    "setting5": {
+                        "key5": "value5"
+                    }
+                },
+                "equal_keys": {
+                    "both_dict": {},
+                    "equal_vals": {
+                        "setting1": "Value 1",
+                        "setting3": true
+                    },
+                    "diff_vals": {
+                        "deleted_val": {},
+                        "added_val": {}
+                    }
+                }
+            }
+        }
+    }
+}

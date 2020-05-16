@@ -28,8 +28,8 @@ def add_diff_tags(dict_before, dict_after):
         if dict_before[key] == dict_after[key]:
             tagged_dict['equal_keys']['equal_vals'][key] = dict_after[key]
         else:
-            val_before_is_dict = dict_before[key] is dict
-            val_after_is_dict = dict_after[key] is dict
+            val_before_is_dict = isinstance(dict_before[key], dict)
+            val_after_is_dict = isinstance(dict_after[key], dict)
             if val_before_is_dict and val_after_is_dict:
                 tagged_dict['equal_keys']['both_dict'][key] = add_diff_tags(dict_before[key], dict_after[key])
             else:
