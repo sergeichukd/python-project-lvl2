@@ -3,7 +3,9 @@ import pytest
 
 
 class TestGenegateDiffJson:
-    def test_compare_nonempty_files(self):
+
+    @staticmethod
+    def test_compare_nonempty_files():
         before_file = "tests/fixtures/before.json"
         after_file = "tests/fixtures/after.json"
         expected_before_after_diff_file = "tests/fixtures/expected_before_after_diff.txt"  # noqa: E501
@@ -12,11 +14,13 @@ class TestGenegateDiffJson:
 
         assert generate_diff(before_file, after_file, file_format="json") == expected_before_after_diff  # noqa: E501
 
-    def test_compare_empty_files(self):
+    @staticmethod
+    def test_compare_empty_files():
         empty_file = "tests/fixtures/empty.json"
         assert generate_diff(empty_file, empty_file, file_format="json") == "{\n\n}"
 
-    def test_wrong_format(self):
+    @staticmethod
+    def test_wrong_format():
         empty_file = "tests/fixtures/empty.json"
         with pytest.raises(SystemExit) as pytest_wrapped_e:
             generate_diff(empty_file, empty_file, file_format="wrong_format")
