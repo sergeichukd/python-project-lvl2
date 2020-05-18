@@ -21,10 +21,11 @@ class TestGenerateDiffJson:
     def test_compare_nonempty_files_nested(self):
         with open(self.expected_before_after_diff_file_nested, "r") as fixture_file:
             expected_before_after_diff = fixture_file.read()
+            print(generate_diff(self.before_nested_file, self.after_nested_file, file_format="json"))
         assert generate_diff(self.before_nested_file, self.after_nested_file, file_format="json") == expected_before_after_diff  # noqa: E501
 
     def test_compare_empty_files(self):
-        assert generate_diff(self.empty_file, self.empty_file, file_format="json") == "{\n\n}"
+        assert generate_diff(self.empty_file, self.empty_file, file_format="json") == "{}"
 
     def test_wrong_format(self):
         with pytest.raises(SystemExit) as pytest_wrapped_e:
