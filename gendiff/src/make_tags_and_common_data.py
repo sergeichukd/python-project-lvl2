@@ -1,4 +1,4 @@
-def tag_diffs(dict_before, dict_after):
+def make_tags_and_common_data(dict_before, dict_after):
 
     common_data = {}
     tags = {}
@@ -30,15 +30,16 @@ def tag_diffs(dict_before, dict_after):
         if value_before == value_after:
             common_data[key] = value_after
             tags[key] = "not_modified"
+            continue
+
+        val_before_is_dict = isinstance(value_before, dict)
+        val_after_is_dict = isinstance(value_after, dict)
+        if val_before_is_dict and val_after_is_dict:
+            common_data[key], tags[key] = make_tags_and_common_data(value_before, value_after)  # noqa: E501
         else:
-            val_before_is_dict = isinstance(value_before, dict)
-            val_after_is_dict = isinstance(value_after, dict)
-            if val_before_is_dict and val_after_is_dict:
-                common_data[key], tags[key] = tag_diffs(value_before, value_after)
-            else:
-                common_data[f"{key}_removed"] = value_before
-                common_data[f"{key}_added"] = value_after
-                tags[f"{key}_removed"] = "modified_removed"
-                tags[f"{key}_added"] = "modified_added"
+            common_data[f"{key}_removed"] = value_before
+            common_data[f"{key}_added"] = value_after
+            tags[f"{key}_removed"] = "modified_removed"
+            tags[f"{key}_added"] = "modified_added"
 
     return common_data, tags
