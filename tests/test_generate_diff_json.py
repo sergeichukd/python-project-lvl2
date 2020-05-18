@@ -2,23 +2,33 @@ from gendiff import generate_diff
 import pytest
 
 
-class TestGenegateDiffJson:
-    def test_compare_nonempty_files(self):
-        before_file = "tests/fixtures/before.json"
-        after_file = "tests/fixtures/after.json"
-        expected_before_after_diff_file = "tests/fixtures/expected_before_after_diff.txt"  # noqa: E501
-        with open(expected_before_after_diff_file, "r") as fixture_file:
-            expected_before_after_diff = fixture_file.read()
+class TestGenerateDiffJson:
 
-        assert generate_diff(before_file, after_file, file_format="json") == expected_before_after_diff  # noqa: E501
+    # Input files
+    before_flat_file = "tests/fixtures/input_data/before_flat.json"
+    after_flat_file = "tests/fixtures/input_data/after_flat.json"
+    before_nested_file = "tests/fixtures/input_data/before_nested.json"
+    after_nested_file = "tests/fixtures/input_data/after_nested.json"
+    empty_file = "tests/fixtures/input_data/empty.json"
+
+    # Expected files
+    expected_before_after_diff_file_flat = "tests/fixtures/expected/expected_flat_diff.txt"  # noqa: E501
+    expected_before_after_diff_file_nested = "tests/fixtures/expected/expected_nested_diff.txt"  # noqa: E501
+
+    def test_compare_nonempty_files_flat(self):
+        with open(self.expected_before_after_diff_file_flat, "r") as fixture_file:
+            expected_before_after_diff = fixture_file.read()
+        assert generate_diff(self.before_flat_file, self.after_flat_file, file_format="json") == expected_before_after_diff  # noqa: E501
+
+    def test_compare_nonempty_files_nested(self):
+        with open(self.expected_before_after_diff_file_nested, "r") as fixture_file:
+            expected_before_after_diff = fixture_file.read()
+        assert generate_diff(self.before_nested_file, self.after_nested_file, file_format="json") == expected_before_after_diff  # noqa: E501
 
     def test_compare_empty_files(self):
-        empty_file = "tests/fixtures/empty.json"
-        assert generate_diff(empty_file, empty_file, file_format="json") == "{\n\n}"
+        assert generate_diff(self.empty_file, self.empty_file, file_format="json") == "{}"
 
     def test_wrong_format(self):
-        empty_file = "tests/fixtures/empty.json"
-        with pytest.raises(SystemExit) as pytest_wrapped_e:
-            generate_diff(empty_file, empty_file, file_format="wrong_format")
-        assert pytest_wrapped_e.type == SystemExit
-        assert pytest_wrapped_e.value.code == "wrong format"
+        with pytest.raises(SystemExit) as e:
+            generate_diff(self.empty_file, self.empty_file, file_format="wrong_format")
+        assert e.value.code == "wrong format"

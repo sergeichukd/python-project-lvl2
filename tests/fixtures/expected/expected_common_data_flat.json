@@ -1,0 +1,7 @@
+{
+    "proxy": "123.234.53.22",
+    "verbose": true,
+    "host": "hexlet.io",
+    "timeout_removed": 50,
+    "timeout_added": 20
+}

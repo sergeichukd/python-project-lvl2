@@ -1,0 +1,18 @@
+{
+  "group2": "removed",
+  "group3": "added",
+  "common": {
+    "setting2": "removed",
+    "setting6": "removed",
+    "setting4": "added",
+    "setting5": "added",
+    "setting1": "not_modified",
+    "setting3": "not_modified"
+  },
+  "group1": {
+    "baz_removed": "modified_removed",
+    "baz_added": "modified_added",
+    "foo": "not_modified"
+  }
+}
+

@@ -1,7 +1,7 @@
 import argparse
 
 
-def parse_args():
+def parse_input_str():
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('file1', type=str, help='the first comparable file')  # noqa: E501
     parser.add_argument('file2', type=str, help='the second comparable file')  # noqa: E501

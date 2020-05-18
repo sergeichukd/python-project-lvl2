@@ -9,8 +9,14 @@
 ### Functionality
 Now the program can handle flat .json files only. More functions in developing now
 
-#### Example of installation and running [json]
+#### Example of installation and running float .json file
 [![asciicast](https://asciinema.org/a/ehjtFMfZGhQxK7fPJtu0VwTPj.svg)](https://asciinema.org/a/ehjtFMfZGhQxK7fPJtu0VwTPj)
 
-#### Example of installation and running [yaml]
+#### Example of installation and running float .yaml file
 [![asciicast](https://asciinema.org/a/e6Aq0jQxLsR3GMjpeILiui2JM.svg)](https://asciinema.org/a/e6Aq0jQxLsR3GMjpeILiui2JM)
+
+#### Example of installation and running nested .json file
+[![asciicast](https://asciinema.org/a/jxvWK0ladceSQ4fny0w9AxKQW.svg)](https://asciinema.org/a/jxvWK0ladceSQ4fny0w9AxKQW)
+
+#### Example of running nested .yml
+[![asciicast](https://asciinema.org/a/QfnhkV4mUF0rHb7hpIrL0VgFn.svg)](https://asciinema.org/a/QfnhkV4mUF0rHb7hpIrL0VgFn)
