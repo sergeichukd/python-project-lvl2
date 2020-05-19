@@ -1,6 +1,12 @@
 install:
 	poetry install
 
+update:
+	poetry update
+
+build: update install
+	poetry build
+
 test:
 	poetry run pytest --cov=gendiff --cov-report xml tests/
 
