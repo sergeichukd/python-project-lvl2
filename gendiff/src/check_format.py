@@ -1,12 +1,10 @@
-YAML_FORMATS = ["yaml", "YAML", "yml", "YML"]
-JSON_FORMATS = ["json", "JSON"]
+VALID_EXTENSIONS = [".json", ".yml"]
 
 
-def check_format(file_format):
-    valid_formats = YAML_FORMATS + JSON_FORMATS
+def check_extension(file_extension):
     try:
-        assert file_format in valid_formats
+        assert file_extension in VALID_EXTENSIONS
     except AssertionError:
-        print("ERROR: Wrong format option!")
-        print("Valid formats: --format=yml; --format=json")
-        raise SystemExit("wrong format")
+        print("ERROR: Wrong file extension!")
+        print("Valid extensions: .json; .yml")
+        raise SystemExit("wrong extension")

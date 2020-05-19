@@ -1,34 +1,67 @@
 from gendiff import generate_diff
+from tests.constants import TEST_DIR_PATH
+import os
 import pytest
 
 
-class TestGenerateDiffJson:
+@pytest.fixture
+def empty_file():
+    input_data_file = os.path.join(TEST_DIR_PATH, "fixtures/input_data/empty.json")
+    return input_data_file
 
-    # Input files
-    before_flat_file = "tests/fixtures/input_data/before_flat.json"
-    after_flat_file = "tests/fixtures/input_data/after_flat.json"
-    before_nested_file = "tests/fixtures/input_data/before_nested.json"
-    after_nested_file = "tests/fixtures/input_data/after_nested.json"
-    empty_file = "tests/fixtures/input_data/empty.json"
 
-    # Expected files
-    expected_before_after_diff_file_flat = "tests/fixtures/expected/expected_flat_diff.txt"  # noqa: E501
-    expected_before_after_diff_file_nested = "tests/fixtures/expected/expected_nested_diff.txt"  # noqa: E501
+@pytest.fixture
+def before_flat_file():
+    input_data_file = os.path.join(TEST_DIR_PATH, "fixtures/input_data/before_flat.json")
+    return input_data_file
 
-    def test_compare_nonempty_files_flat(self):
-        with open(self.expected_before_after_diff_file_flat, "r") as fixture_file:
-            expected_before_after_diff = fixture_file.read()
-        assert generate_diff(self.before_flat_file, self.after_flat_file, file_format="json") == expected_before_after_diff  # noqa: E501
 
-    def test_compare_nonempty_files_nested(self):
-        with open(self.expected_before_after_diff_file_nested, "r") as fixture_file:
-            expected_before_after_diff = fixture_file.read()
-        assert generate_diff(self.before_nested_file, self.after_nested_file, file_format="json") == expected_before_after_diff  # noqa: E501
+@pytest.fixture
+def after_flat_file():
+    input_data_file = os.path.join(TEST_DIR_PATH, "fixtures/input_data/after_flat.json")
+    return input_data_file
 
-    def test_compare_empty_files(self):
-        assert generate_diff(self.empty_file, self.empty_file, file_format="json") == "{}"
 
-    def test_wrong_format(self):
-        with pytest.raises(SystemExit) as e:
-            generate_diff(self.empty_file, self.empty_file, file_format="wrong_format")
-        assert e.value.code == "wrong format"
+@pytest.fixture
+def before_nested_file():
+    input_data_file = os.path.join(TEST_DIR_PATH, "fixtures/input_data/before_nested.json")
+    return input_data_file
+
+
+@pytest.fixture
+def after_nested_file():
+    input_data_file = os.path.join(TEST_DIR_PATH, "fixtures/input_data/after_nested.json")
+    return input_data_file
+
+
+@pytest.fixture
+def expected_before_after_diff_file_flat():
+    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_flat_diff.txt")
+    with open(expected_file, "r") as expected_descriptor:
+        return expected_descriptor.read()
+
+
+@pytest.fixture
+def expected_before_after_diff_file_nested():
+    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_nested_diff.txt")
+    with open(expected_file, "r") as expected_descriptor:
+        return expected_descriptor.read()
+
+
+def test_compare_nonempty_files_flat(before_flat_file,
+                                     after_flat_file,
+                                     expected_before_after_diff_file_flat
+                                     ):
+    assert generate_diff(before_flat_file, after_flat_file) == expected_before_after_diff_file_flat  # noqa: E501
+
+
+def test_compare_nonempty_files_nested(before_nested_file,
+                                       after_nested_file,
+                                       expected_before_after_diff_file_nested
+                                       ):
+    assert generate_diff(before_nested_file, after_nested_file) == expected_before_after_diff_file_nested  # noqa: E501
+
+
+def test_compare_empty_files(empty_file):
+    assert generate_diff(empty_file, empty_file) == "{}"
+

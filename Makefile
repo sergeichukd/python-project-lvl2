@@ -9,4 +9,10 @@ lint:
 
 check: test lint
 
-.PHONY: install test lint
+run_nested_json:
+	gendiff tests/fixtures/input_data/before_nested.json tests/fixtures/input_data/after_nested.json
+
+run_nested_yml:
+	gendiff tests/fixtures/input_data/before_nested.yml tests/fixtures/input_data/after_nested.yml
+
+.PHONY: install test lint run_nested_json run_nested_yml

@@ -1,44 +1,106 @@
 import pytest
-from gendiff.src.make_tags_and_common_data import make_tags_and_common_data
 import json
+import os
+from gendiff.src.make_tags_and_common_data import make_tags_and_common_data
+from tests.constants import TEST_DIR_PATH
 
 
-class TestTagDiffs:
-    before_flat_file = "tests/fixtures/input_data/before_flat.json"
-    after_flat_file = "tests/fixtures/input_data/after_flat.json"
-    before_nested_file = "tests/fixtures/input_data/before_nested.json"
-    after_nested_file = "tests/fixtures/input_data/after_nested.json"
+@pytest.fixture
+def before_flat_data():
+    file_path = "fixtures/input_data/before_flat.json"
+    input_data_file = os.path.join(TEST_DIR_PATH, file_path)
+    input_data = json.load(open(input_data_file))
+    return input_data
 
-    empty_file = "tests/fixtures/empty.json"
-    expected_tags_file_flat = "tests/fixtures/expected/expected_tags_flat.json"  # noqa: E501
-    expected_tags_file_nested = "tests/fixtures/expected/expected_tags_nested.json"  # noqa: E501
-    expected_common_data_file_flat = "tests/fixtures/expected/expected_common_data_flat.json"  # noqa: E501
-    expected_common_data_file_nested = "tests/fixtures/expected/expected_common_data_nested.json"  # noqa: E501
 
-    def test_tags_flat(self):
-        expected_tags = json.load(open(self.expected_tags_file_flat))
-        file_before_data = json.load(open(self.before_flat_file))
-        file_after_data = json.load(open(self.after_flat_file))
-        _, tags = make_tags_and_common_data(file_before_data, file_after_data)
-        assert tags == expected_tags
+@pytest.fixture
+def after_flat_data():
+    file_path = "fixtures/input_data/after_flat.json"
+    input_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    input_data = json.load(open(input_data_file))
+    return input_data
 
-    def test_tags_nested(self):
-        expected_tags = json.load(open(self.expected_tags_file_nested))
-        file_before_data = json.load(open(self.before_nested_file))
-        file_after_data = json.load(open(self.after_nested_file))
-        _, tags = make_tags_and_common_data(file_before_data, file_after_data)
-        assert tags == expected_tags
-        
-    def test_common_data_flat(self):
-        expected_common_data = json.load(open(self.expected_common_data_file_flat))
-        file_before_data = json.load(open(self.before_flat_file))
-        file_after_data = json.load(open(self.after_flat_file))
-        common_data, _ = make_tags_and_common_data(file_before_data, file_after_data)
-        assert common_data == expected_common_data
-        
-    def test_common_data_nested(self):
-        expected_common_data = json.load(open(self.expected_common_data_file_nested))
-        file_before_data = json.load(open(self.before_nested_file))
-        file_after_data = json.load(open(self.after_nested_file))
-        common_data, _ = make_tags_and_common_data(file_before_data, file_after_data)
-        assert common_data == expected_common_data
+
+@pytest.fixture
+def before_nested_data():
+    file_path = "fixtures/input_data/before_nested.json"
+    input_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    input_data = json.load(open(input_data_file))
+    return input_data
+
+
+@pytest.fixture
+def after_nested_data():
+    file_path = "fixtures/input_data/after_nested.json"
+    input_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    input_data = json.load(open(input_data_file))
+    return input_data
+
+
+@pytest.fixture
+def empty_data():
+    file_path = "fixtures/empty.json"
+    input_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    input_data = json.load(open(input_data_file))
+    return input_data
+
+
+@pytest.fixture
+def expected_tags_flat_data():
+    file_path = "fixtures/expected/expected_tags_flat.json"
+    expected_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    expected_data = json.load(open(expected_data_file))
+    return expected_data
+
+
+@pytest.fixture
+def expected_tags_nested_data():
+    file_path = "fixtures/expected/expected_tags_nested.json"
+    expected_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    expected_data = json.load(open(expected_data_file))
+    return expected_data
+
+
+@pytest.fixture
+def expected_common_data_flat():
+    file_path = "fixtures/expected/expected_common_data_flat.json"
+    expected_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    expected_data = json.load(open(expected_data_file))
+    return expected_data
+
+
+@pytest.fixture
+def expected_common_data_nested():
+    file_path = "fixtures/expected/expected_common_data_nested.json"
+    expected_data_file = os.path.join(TEST_DIR_PATH, file_path)  # noqa: E501
+    expected_data = json.load(open(expected_data_file))
+    return expected_data
+
+
+def test_tags_flat(before_flat_data,
+                   after_flat_data,
+                   expected_tags_flat_data
+                   ):
+    _, tags = make_tags_and_common_data(before_flat_data, after_flat_data)
+    assert tags == expected_tags_flat_data
+
+
+def test_tags_nested(before_nested_data,
+                     after_nested_data,
+                     expected_tags_nested_data
+                     ):
+    _, tags = make_tags_and_common_data(before_nested_data, after_nested_data)
+    assert tags == expected_tags_nested_data
+
+
+def test_common_data_flat(before_flat_data,
+                          after_flat_data,
+                          expected_common_data_flat
+                          ):
+    common_data, _ = make_tags_and_common_data(before_flat_data, after_flat_data)
+    assert common_data == expected_common_data_flat
+
+
+def test_common_data_nested(before_nested_data, after_nested_data, expected_common_data_nested):
+    common_data, _ = make_tags_and_common_data(before_nested_data, after_nested_data)
+    assert common_data == expected_common_data_nested
