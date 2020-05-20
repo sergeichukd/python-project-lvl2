@@ -36,14 +36,14 @@ def after_nested_file():
 
 @pytest.fixture
 def expected_before_after_diff_file_flat():
-    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_flat_diff.txt")
+    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_flat_to_flat_diff.txt")
     with open(expected_file, "r") as expected_descriptor:
         return expected_descriptor.read()
 
 
 @pytest.fixture
 def expected_before_after_diff_file_nested():
-    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_nested_diff.txt")
+    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_nested_to_flat_diff.txt")
     with open(expected_file, "r") as expected_descriptor:
         return expected_descriptor.read()
 
@@ -63,5 +63,5 @@ def test_compare_nonempty_files_nested(before_nested_file,
 
 
 def test_compare_empty_files(empty_file):
-    assert generate_diff(empty_file, empty_file) == "{}"
+    assert generate_diff(empty_file, empty_file) == ""
 
