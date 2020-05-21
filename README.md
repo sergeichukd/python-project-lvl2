@@ -20,3 +20,6 @@ Now the program can handle flat .json files only. More functions in developing n
 
 #### Example of running nested .yml
 [![asciicast](https://asciinema.org/a/QfnhkV4mUF0rHb7hpIrL0VgFn.svg)](https://asciinema.org/a/QfnhkV4mUF0rHb7hpIrL0VgFn)
+
+#### Example of running nested .yml --format plain
+[![asciicast](https://asciinema.org/a/bbsCzehSxkg2BohHDBfckyCFl.svg)](https://asciinema.org/a/bbsCzehSxkg2BohHDBfckyCFl)

@@ -36,14 +36,14 @@ def after_nested_file():
 
 @pytest.fixture
 def expected_before_after_diff_file_flat():
-    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_flat_diff.txt")
+    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_flat_to_plain_diff.txt")
     with open(expected_file, "r") as expected_descriptor:
         return expected_descriptor.read()
 
 
 @pytest.fixture
 def expected_before_after_diff_file_nested():
-    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_nested_diff.txt")
+    expected_file = os.path.join(TEST_DIR_PATH, "fixtures/expected/expected_nested_to_plain_diff.txt")
     with open(expected_file, "r") as expected_descriptor:
         return expected_descriptor.read()
 
@@ -52,16 +52,16 @@ def test_compare_nonempty_files_flat(before_flat_file,
                                      after_flat_file,
                                      expected_before_after_diff_file_flat
                                      ):
-    assert generate_diff(before_flat_file, after_flat_file) == expected_before_after_diff_file_flat  # noqa: E501
+    assert generate_diff(before_flat_file, after_flat_file, out_format='plain') == expected_before_after_diff_file_flat  # noqa: E501
 
 
 def test_compare_nonempty_files_nested(before_nested_file,
                                        after_nested_file,
                                        expected_before_after_diff_file_nested
                                        ):
-    assert generate_diff(before_nested_file, after_nested_file) == expected_before_after_diff_file_nested  # noqa: E501
+    assert generate_diff(before_nested_file, after_nested_file, out_format='plain') == expected_before_after_diff_file_nested  # noqa: E501
 
 
 def test_compare_empty_files(empty_file):
-    assert generate_diff(empty_file, empty_file) == "{}"
+    assert generate_diff(empty_file, empty_file, out_format='plain') == ""
 

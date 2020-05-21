@@ -65,7 +65,7 @@ def _remove_postfixes(data_string, tags):
     return out_string
 
 
-def generate_out_string(common_data, tags):
+def make_nested_out_string(common_data, tags):
     out_string = json.dumps(common_data, indent=4)
     out_string = _remove_quotes(out_string)
     out_string = _remove_commas(out_string)

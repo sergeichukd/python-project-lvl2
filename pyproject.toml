@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sergeichukd_gendiff"
-version = "1.3.3"
+version = "1.4.0"
 description = ""
 authors = ["Sergeichuk Dmitrii <sergeychukdmitry@gmail.com>"]
 packages = [
